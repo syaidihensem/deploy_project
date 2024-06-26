@@ -1,0 +1,77 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR Keepsake</title>
+
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+
+        form {
+            color: #FECE8A;
+            background-color: #575353;
+            padding: 20px 50px 30px 50px;
+            box-shadow: 10px 10px 10px rgba(129, 89, 89, 0.1);
+        }
+
+        input[type="text"] {
+            margin-top: 2.5px;
+            border-bottom-style: groove;
+            margin-bottom: 10px; 
+        }
+
+        /* style to the submit button */
+        button[type="submit"] {
+            background-color: #FECE8A; 
+            color: #575353; 
+            padding: 10px 20px ;
+        }
+
+        a{
+            color: #FECE8A;
+            text-decoration: none;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 0 1em;
+        }
+    </style>
+</head>
+<body background="{% static "picture/Bg.jpg" %}">
+
+    <form action="{% url 'LoginSubmit' %}" method="get">
+
+        <h1>Login</h1>
+        User Name : <br> <input type="text" name="username" placeholder="Enter your user ID..." required><br> 
+        Password : <br> <input type="text" name="password" placeholder="Enter your password..." required><br>
+
+        <center><button type="submit" style="margin-top: 15px; margin-bottom: 15px;" >Login</center>
+        {{error}}
+
+        <ul>
+            <li><a href="{% url 'Register' %}" >Register</a></li>
+            <li><a href="/JR_Keepsake/">Home</a></li>
+        </ul>
+    </form>
+    
+</body>
+</html>

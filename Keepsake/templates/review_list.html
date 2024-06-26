@@ -1,0 +1,182 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR Keepsake - Reviews</title>
+
+    <style>
+        header {
+            background-color: #575353;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #EDF5E1;
+            font-family: Verdana, sans-serif;
+        }
+
+        footer {
+            margin-top: 5%;
+            background-color: #575353;
+            color: #EDF5E1;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
+        }
+
+        a, span {
+            text-decoration: none;
+            color: #FECE8A;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        a:link, a:visited {
+            background-color: #575353;
+            color: #FECE8A;
+            padding: 10px 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 12px;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 0 1em;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-style: groove;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #575353;
+            color: #FECE8A;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #575353;
+        }
+        .dropdown {
+            font-size: small;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #575353;
+            text-align: center; /* Center align text within the dropdown */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fece8a;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            text-align: center; /* Center align text within the dropdown content */
+            left: 50%; /* Move dropdown content to the center */
+            transform: translateX(-50%); /* Adjust to center relative to parent */
+        }
+
+        .dropdown-content a {
+            color: #edf5e1;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #fece8a;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/JR_Keepsake/">Home</a>
+
+        <ul>
+            <li><a href="{% url 'AllOrder' %}">Order</a></li>
+            <li><a href="{% url 'Catalogue' %}">Catalogue</a></li>
+            {% if user_name %}
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" >{{user_name}}</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'UpdateProfile' %}">Update Profile</a>
+                        <a href="{% url 'DeleteProfile' %}">Delete Account</a>
+                        <a href="{% url 'Logout' %}">Logout</a>
+                    </div>
+                </li>
+            {% else %}
+                <li><a href="Login">Login</a></li>
+            {% endif %}
+        </ul>
+    </header>
+
+    <h1>Reviews</h1>
+    
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Order ID</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Actions</th>
+        </tr>
+        {% for review in reviews %}
+        <tr>
+            <td>{{ review.Product_Name.Product_Name }}</td>
+            <td>{{ review.Order_ID.Order_ID }}</td>
+            <td>{{ review.Description }}</td>
+            <td>{{ review.Rate }}</td>
+            <td>
+                <a href="{% url 'update_review' review.id %}">Edit</a>
+                <a href="{% url 'delete_review' review.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+    <center><a style="margin-top: 5%;" href="{% url 'create_review' %} ">Add Review</a></center>
+
+    <footer>
+        <h4>&copy; 2024 JR Keepsake. All rights reserved.</h4>
+    </footer>
+</body>
+</html>

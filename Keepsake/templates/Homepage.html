@@ -1,0 +1,193 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR Keepsake</title>
+
+    <style>
+        header {
+            background-color: #575353;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #EDF5E1;
+            font-family: Verdana, sans-serif;
+        }
+
+        footer {
+            margin-top: 5%;
+            background-color: #575353;
+            color: #EDF5E1;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+        }
+
+        a, span {
+            text-decoration: none;
+            color: #FECE8A;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        a:link, a:visited {
+            background-color: #575353;
+            color: #FECE8A; 
+            padding: 10px 8px 10px 8px; 
+            text-align: center; 
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 12px;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 0 1em;
+        }
+        
+        p{
+            text-align: center;
+            margin: 5px 15% 5px 15%;
+            padding-top: 7.5px;
+            padding-bottom: 7.5px;
+            font-size: large;
+            color: #575353;
+        }
+
+        h3{
+            color: #FECE8A;
+            background-color: #575353;
+            padding: 10px 5px 10px 5px;
+            border-radius: 25px;
+        }
+
+        .columns {
+            margin-top: 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .col {
+            flex: 1;
+            max-width: 33.33%; /* semua gambar */
+            margin: 0px; /* antara gambar */
+            text-align: center;
+        }
+
+        img {
+            margin-top: 5%;
+            width: 100%; 
+            height: auto; /* ikut gambar*/
+        }
+
+        .dropdown {
+            font-size: small;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #575353;
+            text-align: center; /* Center align text within the dropdown */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fece8a;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            text-align: center; /* Center align text within the dropdown content */
+            left: 50%; /* Move dropdown content to the center */
+            transform: translateX(-50%); /* Adjust to center relative to parent */
+        }
+
+        .dropdown-content a {
+            color: #edf5e1;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #fece8a;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+</style>
+</head>
+<body>
+
+    <header>
+        <a href="/JR_Keepsake/">Home</a>
+
+        <ul>
+            <li><a href="{% url 'AllOrder' %}">Order</a></li>
+            <li><a href="{% url 'Catalogue' %}">Catalogue</a></li>
+            {% if user_name %}
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" >{{user_name}}</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'UpdateProfile' %}">Update Profile</a>
+                        <a href="{% url 'DeleteProfile' %}">Delete Account</a>
+                        <a href="{% url 'Logout' %}">Logout</a>
+                    </div>
+                </li>
+            {% else %}
+                <li><a href="Login">Login</a></li>
+            {% endif %}
+        </ul>
+    </header>
+
+    <img src="{% static "picture/Background.jpg" %}">
+
+    <div class="columns">
+        <div class="col">
+            <h3>OUR PHILOSOPHY </h3> 
+            <p> Our philosophy centers around fostering meaningful connections. 
+                Gifts and souvenirs are more than just objects; they carry memories, emotions, and stories. 
+                We believe in celebrating these connections by curating thoughtful, unique items that resonate with our customers.</p>
+            <a href="reviews">Product Review</a>
+        </div>
+        <div class="col" >
+            <h3>SPECIAL OFFER</h3> 
+            <p>Whether you're celebrating a special occasion or simply showing appreciation, our free shipping ensures your gifts arrive conveniently and affordably. 
+                Don't miss out on this opportunity to discover the perfect present with ease and elegance at JR Keepsake."🚚🌟</p>
+            
+            <a href="Catalogue">BOOK NOW !</a>
+        </div>
+        <div class="col">
+            <h3>OPENING HOURS</h3> 
+            <p  style="text-align: left;"> 
+                Monday    : 10:30am - 6:30pm <br>   
+                Tuesday   : 10:30am - 6:00pm <br>
+                Wednesday : 10:30am - 6:00pm <br>
+                Thursday  : 10:30am - 6:00pm <br>
+                Friday    :       CLOSED     <br>
+                Saturday  :  9:30am - 8:00pm <br>
+                Sunday    :  9:30am - 8:00pm </p>
+
+        </div>
+    </div>
+
+    <footer>
+        <h4>&copy; 2024 JR Keepsake. All rights reserved.</h4>
+    </footer>
+
+</body>
+</html>

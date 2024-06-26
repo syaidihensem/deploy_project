@@ -1,0 +1,68 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR Keepsake</title>
+
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+
+        form {
+            color: #FECE8A;
+            background-color: #575353;
+            padding: 20px 50px 30px 50px;
+            box-shadow: 10px 10px 10px rgba(129, 89, 89, 0.1);
+        }
+
+        input[type="text"],input[type="submit"] {
+            margin-top: 2.5px;
+            border-bottom-style: groove;
+            margin-bottom: 10px; 
+        }
+
+        /* style to the submit button */
+        input[type="submit"] {
+            background-color: #FECE8A; 
+            color: #575353; 
+            padding: 10px 20px ;
+        }
+
+        a{
+            color: #FECE8A;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body background="{% static "picture/Bg.jpg" %}">
+    <form action="{% url 'Register' %}" method="post">
+
+        <h1>Create an account</h1>
+        {% csrf_token %}
+        User Name : <br> <input type="text" name="username" placeholder="Create an username" required><br> 
+        Phone : <br> <input type="text" name="phone" placeholder="Enter your No.Phone" required><br>
+        Email : <br> <input type="text" name="email" placeholder="Enter your email" required><br>
+        Password : <br> <input type="text" name="password" placeholder="Create a password" required><br>
+        Address : <br> <input type="text" name="address"  placeholder="Enter your address" required><br><br>
+
+        <center><input type="submit" value="Create an account"></center>
+
+        <center>{{message}}</center>
+
+        <center style="margin-top: 10px;"><a href="{% url 'Login' %}">Redirect to Login</a></center>
+    </form>
+    
+</body>
+</html>
